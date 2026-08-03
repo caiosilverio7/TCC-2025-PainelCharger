@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Carregando</title>
+  <link rel="stylesheet" href="carregando.css" />
+</head>
+<body>
+  <div class="carregando-container">
+    <h2>Seu celular está carregando...</h2>
+    <p>Tempo restante:</p>
+    <h1 id="cronometro">--:--</h1>
+  </div>
+<style>
+    body {
+  background-color: #000;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.carregando-container {
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 30px;
+  background-color: #111;
+  border: 2px solid #ff0000;
+  border-radius: 10px;
+  text-align: center;
+}
+
+h2 {
+  color: #ff0000;
+  margin-bottom: 20px;
+}
+
+#cronometro {
+  font-size: 48px;
+  font-weight: bold;
+  color: #ffffff;
+  margin-top: 10px;
+}
+
+</style>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    let tempo = parseInt(params.get("tempo")) || 0;
+
+    let segundos = tempo * 60;
+
+    function atualizarCronometro() {
+      let min = Math.floor(segundos / 60);
+      let seg = segundos % 60;
+
+      document.getElementById("cronometro").innerText =
+        `${String(min).padStart(2, "0")}:${String(seg).padStart(2, "0")}`;
+
+      if (segundos > 0) {
+        segundos--;
+        setTimeout(atualizarCronometro, 1000);
+      } else {
+        document.querySelector(".carregando-container").innerHTML =
+          "<h2>Tempo encerrado!</h2><p>Obrigado por usar nosso carregador solar.</p>";
+      }
+    }
+
+    atualizarCronometro();
+  </script>
+</body>
+</html>

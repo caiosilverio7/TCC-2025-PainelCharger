@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+
+  <link rel="stylesheet" href="login.css">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Carregador Solar</title>
+    <link rel="stylesheet" href="estilos.css"> <!-- O CSS não será alterado -->
+</head>
+<body>
+
+    <div class="login-container">
+
+      <!-- Mensagem de erro temporária -->
+<div id="msgErro" style="display:none;">Email ou senha inválidos!</div>
+
+<script>
+  // Verifica se veio erro na URL
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('erro') === '1') {
+    const msg = document.getElementById('msgErro');
+    msg.style.display = 'block';
+    msg.style.opacity = '1';
+
+    setTimeout(() => {
+      msg.style.transition = 'opacity 1s ease';
+      msg.style.opacity = '0';
+      setTimeout(() => msg.style.display = 'none', 1000);
+    }, 4000);
+  }
+</script>
+
+<style>
+  #msgErro {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #f44336; /* vermelho que combina com seu tema */
+    color: white;
+    padding: 15px 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(244, 67, 54, 0.7);
+    font-weight: bold;
+    font-size: 16px;
+    z-index: 1000;
+  }
+</style>
+
+
+        <form action="login.php" method="post">
+
+            <h2>Login</h2>
+            
+            <div class="input-field">
+                <input type="email" name="email" placeholder="Email" required>
+            </div>
+            
+            <div class="input-field">
+                <input type="password" name="senha" placeholder="Senha" required>
+            </div>
+
+            <div class="btn-field">
+                <button type="submit">Entrar</button>
+            </div>
+
+            <p><a href="cadastro.php">Cadastre-se aqui</a></p>
+        </form>
+    </div>
+</body>
+</html>

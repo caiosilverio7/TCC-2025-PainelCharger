@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Carregador Solar</title>
+</head>
+<body>
+
+  <link rel="stylesheet" href="paginaprincipal.css">
+
+  <div class="main-container">
+    <h1>Carregador Solar Público</h1>
+    <p>Escolha quanto tempo você quer carregar seu celular:</p>
+
+    <div class="planos">
+      <button onclick="comprar(10)">10 minutos - R$5</button>
+      <button onclick="comprar(20)">20 minutos - R$10</button>
+      <button onclick="comprar(30)">30 minutos - R$15</button>
+      <button onclick="comprar(60)">1 hora - R$30</button>
+    </div>
+
+    <div id="mensagem-compra"></div>
+  </div>
+
+  <script>
+    function comprar(tempo) {
+      // Redireciona para a página de pagamento com o tempo comprado
+      window.location.href = `pagamento.html?tempo=${tempo}`;
+    }
+  </script>
+</body>
+</html>

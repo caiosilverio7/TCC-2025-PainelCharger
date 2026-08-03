@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pagamento</title>
+  <link rel="stylesheet" href="pagamento.css" />
+  
+</head>
+<style>
+    body {
+  background-color: #000;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.pagamento-container {
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 30px;
+  background-color: #111;
+  border: 2px solid #ff0000;
+  border-radius: 10px;
+  text-align: center;
+}
+
+h2 {
+  color: #ff0000;
+  margin-bottom: 20px;
+}
+
+.pagamento-info p {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+button {
+  margin-top: 20px;
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #cc0000;
+}
+
+</style>
+<body>
+  <div class="pagamento-container">
+    <h2>Pagamento</h2>
+    <p>Simule aqui o pagamento para liberar o carregador.</p>
+
+    <div class="pagamento-info">
+      <p id="tempo-comprado">Tempo: --</p>
+      <p id="valor-pago">Valor: --</p>
+    </div>
+
+    <button onclick="finalizarPagamento()">Pagar Agora</button>
+  </div>
+
+  <script>
+    // Recupera tempo e valor da URL
+    const params = new URLSearchParams(window.location.search);
+    const tempo = parseInt(params.get("tempo")) || 0;
+    const valor = tempo / 2;
+
+    document.getElementById("tempo-comprado").innerText = `Tempo: ${tempo} minutos`;
+    document.getElementById("valor-pago").innerText = `Valor: R$${valor}`;
+
+    function finalizarPagamento() {
+      // Redireciona para a tela de carregamento com o tempo comprado
+      window.location.href = `carregamento.html?tempo=${tempo}`;
+    }
+  </script>
+</body>
+</html>
