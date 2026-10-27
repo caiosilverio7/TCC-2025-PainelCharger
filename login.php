@@ -65,16 +65,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['email'], $_POST['senha
     }
 }
 
-// Verifica se há mensagem de erro na sessão para exibir, se o redirecionamento
-// de erro tiver acabado de ocorrer.
 $erro_exibir = null;
 if (isset($_SESSION['erro_login'])) {
     $erro_exibir = $_SESSION['erro_login'];
     unset($_SESSION['erro_login']);
 }
-
-// Se chegou direto na página sem enviar formulário, só exibe o formulário abaixo
-// A conexão é fechada antes de o script terminar.
 if (isset($conexao) && $conexao instanceof mysqli) {
     $conexao->close();
 }
@@ -87,35 +82,9 @@ if (isset($conexao) && $conexao instanceof mysqli) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Carregador Solar</title>
-    <!-- Inclui seus estilos CSS -->
+  
     <link rel="stylesheet" href="login.css">
-    <link rel="stylesheet" href="estilos.css">
-    <style>
-/* Estilos básicos para a mensagem de erro */
-#msgErro { 
-    padding: 10px; 
-    background-color: #fdd; 
-    border: 1px solid #f00; 
-    color: #a00; 
-    text-align: center; 
-    margin-bottom: 20px; 
-    border-radius: 5px;
-    opacity: 0; /* Começa invisível */
-    transition: opacity 0.5s ease; /* Adiciona transição para o JS */
-}
-.login-container { 
-    max-width: 400px; 
-    margin: 50px auto; 
-    padding: 20px; 
-    border: 1px solid #ccc; 
-    border-radius: 8px; 
-    box-shadow: 0 0 10px rgba(0,0,0,0.1); 
-}
-.input-field { margin-bottom: 20px; }
-.input-field input { width: 100%; padding: 10px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
-.btn-field { text-align: center; }
-.btn-field button { padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
-</style>
+    
 </head>
 <body>
 
